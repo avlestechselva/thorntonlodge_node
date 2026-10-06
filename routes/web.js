@@ -74,7 +74,7 @@ router.get('/logout', auth.logout);
 // Dashboard
 router.get('/admin/dashboard', ensureAuth, withDB, dashboard.index);
 router.get('/admin/profile', ensureAuth, withDB, dashboard.profile);
-router.put('/admin/profile?_method=PUT', ensureAuth, withDB, dashboard.updateUser);
+router.put('/admin/profile', ensureAuth, withDB, dashboard.updateUser);
 
 // Posts
 router.get('/admin/posts', ensureAuth, withDB, postCtrl.index);
