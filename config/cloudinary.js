@@ -1,0 +1,31 @@
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'thorntonlodge',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+  },
+});
+
+const pdfStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'thorntonlodge/pdfs',
+    resource_type: 'raw',
+    allowed_formats: ['pdf'],
+  },
+});
+
+const upload = multer({ storage });
+const uploadPdf = multer({ storage: pdfStorage });
+
+module.exports = { cloudinary, upload, uploadPdf };

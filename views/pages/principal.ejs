@@ -1,0 +1,40 @@
+<section class="banner scroll-animate parallax-hero" style="background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.7)), url(/images/slider/care.jpg) no-repeat center center; background-size: cover; min-height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; background-attachment: fixed;">
+    <div class="container"><div class="hero-content">
+        <h1 style="font-size: 56px; font-weight: 600; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">Principal of Care</h1>
+        <p style="font-size: 20px; max-width: 700px; margin: 20px auto 0; line-height: 1.8;">Our commitment to providing high quality, person-centred care</p>
+    </div></div>
+</section>
+<section style="background: #ffffff; padding: 100px 0;">
+    <div class="container-fluid" style="max-width: 1600px; padding: 0 20px;">
+        <div class="modern-section-title scroll-animate">
+            <div class="title-tag">CARE PHILOSOPHY</div>
+            <h3>Our Principal of Care</h3>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4 scroll-animate-zoom">
+                <div style="background: white; border-radius: 20px; padding: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                    <p style="font-size: 17px; line-height: 1.9; color: #555; margin-bottom: 25px;">Thornton Lodge is committed to providing high quality, person-centred residential care. Our principal of care is founded on respect, dignity, and the promotion of independence for all our residents.</p>
+                    <p style="font-size: 17px; line-height: 1.9; color: #555; margin-bottom: 25px;">We believe that every person in our care deserves to be treated as an individual, with their unique needs, preferences, and life history respected and valued. Our care plans are tailored to each resident, ensuring that they receive the most appropriate and effective support.</p>
+                    <p style="font-size: 17px; line-height: 1.9; color: #555; margin-bottom: 25px;">Our dedicated team of care professionals work tirelessly to create a warm, nurturing environment where residents feel safe, comfortable, and valued. We are committed to continuous improvement and regular training to ensure our standards remain high.</p>
+                    <div class="row mt-4">
+                        <% [
+                            {icon:'fa-heart',title:'Person-Centred Care',desc:'Every care plan is individually tailored to meet the unique needs of each resident.'},
+                            {icon:'fa-shield',title:'Dignity & Respect',desc:'We uphold the dignity and rights of every individual in our care at all times.'},
+                            {icon:'fa-users',title:'Family Partnership',desc:'We work in close partnership with families to ensure the best outcomes for residents.'},
+                            {icon:'fa-star',title:'Quality Standards',desc:'We maintain high standards of care, regularly reviewed by the Care Quality Commission.'}
+                        ].forEach(c => { %>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div style="background: linear-gradient(135deg, #F0F7FA 0%, #E8F4F8 100%); border-radius: 15px; padding: 30px; text-align: center; height: 100%; border-bottom: 4px solid #7BA5C7;">
+                                <i class="fa <%= c.icon %>" style="font-size: 36px; color: #7BA5C7; margin-bottom: 15px; display: block;"></i>
+                                <h5 style="font-size: 18px; font-weight: 700; color: #2C3E50; margin-bottom: 10px;"><%= c.title %></h5>
+                                <p style="font-size: 15px; line-height: 1.7; color: #555; margin: 0;"><%= c.desc %></p>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

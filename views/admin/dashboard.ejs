@@ -1,0 +1,47 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="welcome" class="alert alert-block alert-info">
+                    <button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
+                    <i class="ace-icon fa fa-user white"></i>&nbsp;
+                    <strong class="white">Welcome, <%= user ? user.name : 'Admin' %>!!</strong> It's good to see you again...
+                </div>
+            </div>
+            <script>setTimeout(function(){ $("#welcome").fadeOut("slow"); }, 9000);</script>
+
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-tags"></i></div>
+                    <div class="count"><%= post_tag_count || 0 %></div>
+                    <h3>News Tags</h3>
+                    <a href="/admin/categories"><p>&gt; View Tags</p></a>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <div class="count"><%= post_count || 0 %></div>
+                    <h3>News</h3>
+                    <a href="/admin/posts"><p>&gt; View Posts</p></a>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-building"></i></div>
+                    <div class="count"><%= rooms_count || 0 %></div>
+                    <h3>Rooms</h3>
+                    <a href="/admin/rooms"><p>&gt; View Rooms</p></a>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-comment"></i></div>
+                    <div class="count"><%= testimonial_count || 0 %></div>
+                    <h3>Testimonials</h3>
+                    <a href="/admin/testimonials"><p>&gt; View Testimonials</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="right_col" role="main">
+    <div class="">
+        <% if (success) { %><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= success %></div><% } %>
+        <% if (error) { %><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= error %></div><% } %>
+        <div class="page-title"><div class="title_left"><h3>My Profile</h3></div></div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Update Profile</h2><div class="clearfix"></div></div>
+                    <div class="x_content">
+                        <br>
+                        <form method="POST" action="/admin/profile?_method=PUT" class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" name="name" class="form-control" value="<%= adminUser ? adminUser.name : '' %>" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="email" name="email" class="form-control" value="<%= adminUser ? adminUser.email : '' %>" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="password" name="password" class="form-control" placeholder="Leave blank to keep current password">
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group text-center">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success"><i class="ace-icon fa fa-check"></i> Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

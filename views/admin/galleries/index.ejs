@@ -1,0 +1,64 @@
+<link href="/Adminassets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<div class="right_col" role="main">
+    <div class="">
+        <% if (success) { %><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= success %></div><% } %>
+        <% if (error) { %><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= error %></div><% } %>
+        <div class="page-title"><div class="title_left"><h3>Gallery Images</h3></div></div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Gallery Images</h2><div class="clearfix"></div></div>
+                    <div class="x_content">
+                        <div class="clearfix" style="margin-bottom:15px;">
+                            <a href="/admin/galleries/create" class="btn btn-sm btn-success btn-space"><i class="ace-icon fa fa-upload"></i> Upload Images</a>
+                            <a href="/admin/galleries" class="btn btn-space btn-sm btn-info"><i class="ace-icon fa fa-refresh"></i> Reload</a>
+                        </div>
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                            <thead><tr><th>#</th><th>Image</th><th>Title</th><th>Tag</th><th>Created</th><th>Action</th></tr></thead>
+                            <tbody>
+                            <% if (galleries && galleries.length > 0) { %>
+                            <% galleries.forEach((gallery, k) => { %>
+                            <tr>
+                                <td><%= k+1 %></td>
+                                <td><img width="80px" height="55px" src="<%= gallery.image %>" alt="<%= gallery.title %>"></td>
+                                <td><div class="truncate-ellipsis-title"><%= gallery.title %></div></td>
+                                <td><%= gallery.tag ? gallery.tag.title : '' %></td>
+                                <td><%= new Date(gallery.createdAt).toLocaleDateString('en-GB') %></td>
+                                <td>
+                                    <a title="Edit" class="label label-success lbl_pad" href="/admin/galleries/<%= gallery._id %>/edit"><i class="ace-icon fa fa-pencil"></i></a>
+                                    <a title="Delete" class="label label-danger lbl_pad" href="#" data-toggle="modal" onclick="deleteItem('<%= gallery._id %>','<%= gallery.title %>')" data-target=".bs-delete-modal-sm">&nbsp;<i class="ace-icon fa fa-trash-o"></i>&nbsp;</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                            <% } else { %>
+                            <tr><td colspan="6"><div class="alert alert-warning">No gallery images found.</div></td></tr>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-delete-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm"><div class="modal-content">
+        <div class="modal-header" style="background:black;"><button type="button" class="close" data-dismiss="modal"><span>×</span></button><h4 class="modal-title">Confirm Delete</h4></div>
+        <div class="modal-body"><h5 id="tagid"></h5><h5 id="tagname"></h5><h4><strong>Are you sure?</strong></h4></div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger id-btn-delete" data-dismiss="modal">Yes</button>
+        </div>
+    </div></div>
+</div>
+<script src="/Adminassets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/Adminassets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){ if($('#datatable-buttons').length){ $('#datatable-buttons').DataTable(); } });
+function deleteItem(id, name) {
+    document.getElementById("tagid").innerHTML = 'ID: ' + id;
+    document.getElementById("tagname").innerHTML = 'Title: ' + name;
+    $(".id-btn-delete").off('click').on('click', function(){ location.href = '/admin/galleries/' + id + '/delete'; });
+}
+</script>

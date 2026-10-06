@@ -1,0 +1,94 @@
+<div class="right_col" role="main">
+    <div class="">
+        <% if (error) { %><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= error %></div><% } %>
+        <div class="page-title"><div class="title_left"><h3>Add Room</h3></div></div>
+        <div class="clearfix"></div>
+        <form action="/admin/rooms" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Room Information</h2><div class="clearfix"></div></div>
+                    <div class="x_content"><br>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Room Title</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12"><input type="text" name="title" class="form-control" placeholder="Room title ..." required oninput="autoSlug(this.value)"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Slug</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12"><input type="text" id="slug" name="slug" class="form-control" placeholder="room-slug ..." required></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Cover Image</h2><div class="clearfix"></div></div>
+                    <div class="x_content"><br>
+                        <div class="form-group"><div class="col-xs-12"><input name="cover_image" accept="image/*" type="file" class="form-control" required></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Visibility</h2><div class="clearfix"></div></div>
+                    <div class="x_content"><br>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="status" class="form-control">
+                                    <option value="PUBLISHED" selected>PUBLISHED</option>
+                                    <option value="DRAFT">DRAFT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Excerpt</h2><div class="clearfix"></div></div>
+                    <div class="x_content"><textarea name="description" class="form-control" rows="3" placeholder="Excerpt text ..."></textarea></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>Room Body</h2><div class="clearfix"></div></div>
+                    <div class="x_content"><textarea name="body" id="room-ckeditor" class="form-control" rows="10" placeholder="Room description ..."></textarea></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title"><h2>SEO Info</h2><div class="clearfix"></div></div>
+                    <div class="x_content">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">SEO Title</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12"><input type="text" name="seotitle" class="form-control" placeholder="SEO Title ..."></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Keywords</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12"><input type="text" name="keywords" class="form-control" placeholder="Keywords ..."></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Meta Description</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12"><textarea name="meta_description" maxlength="150" class="form-control" rows="3" placeholder="Meta description ..."></textarea></div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group text-center">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                <a href="/admin/rooms" class="btn btn-danger"><i class="ace-icon fa fa-arrow-left"></i> Back</a>
+                                <button type="reset" class="btn btn-warning"><i class="ace-icon fa fa-refresh"></i> Reset</button>
+                                <button type="submit" class="btn btn-success"><i class="ace-icon fa fa-check"></i> Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script src="/Adminassets/ckeditor/ckeditor.js"></script>
+<script>
+if (typeof CKEDITOR !== 'undefined') { CKEDITOR.replace('room-ckeditor'); }
+function autoSlug(val) { document.getElementById('slug').value = val.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+</script>

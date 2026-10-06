@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= typeof page_title !== 'undefined' ? page_title : 'Admin - Thornton Lodge' %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dashboard - Thornton Lodge" />
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <link href="/Adminassets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Adminassets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Adminassets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/Adminassets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/Adminassets/css/custom.min.css" rel="stylesheet">
+    <style>
+    .truncate-ellipsis { white-space: nowrap; width: 9em; overflow: hidden; text-overflow: ellipsis; }
+    .truncate-ellipsis-title { white-space: nowrap; width: 9em; overflow: hidden; text-overflow: ellipsis; }
+    .truncate-ellipsis-title:hover { overflow: visible; white-space: normal; height:auto; }
+    .lbl_pad { margin-right:5px; padding:7px; }
+    .btn-space { margin-top:-15px; margin-bottom:-25px; }
+    </style>
+</head>
+<body class="nav-md footer_fixed">
+
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+            <div class="left_col scroll-view">
+                <div class="profile clearfix">
+                    <div class="profile_pic" style="width: 100%;">
+                        <a href="/admin/dashboard"><img src="/images/logo.png" alt="<%= typeof user !== 'undefined' && user ? user.name : 'Admin' %>" class="img-circle profile_img"></a>
+                    </div>
+                </div>
+                <br/>
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-edit"></i> News <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/categories">Categories</a></li>
+                                    <li><a href="/admin/posts">News</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-image"></i> Gallery <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/gallery-tags">Gallery Tags</a></li>
+                                    <li><a href="/admin/galleries">Images</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-comment"></i> Testimonials <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/testimonials">Testimonials</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-building"></i> Room <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/rooms">Rooms</a></li>
+                                    <li><a href="/admin/room-info">Room Preference</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-user"></i> Staffs <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/staff">Staff</a></li>
+                                    <li><a href="/admin/staff-categories">Category</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/admin/site-settings"><i class="fa fa-file-pdf-o"></i> Menu PDF</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-footer hidden-small">
+                    <a href="/logout" data-toggle="tooltip" data-placement="top" title="Logout">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/Adminassets/images/user.png" alt="<%= typeof user !== 'undefined' && user ? user.name : 'Admin' %>">
+                                <%= typeof user !== 'undefined' && user ? user.name : 'Admin' %>
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="/admin/profile"> Profile</a></li>
+                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <% if (typeof success !== 'undefined' && success) { %>
+        <div class="right_col">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <%= success %>
+            </div>
+        </div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error) { %>
+        <div class="right_col">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <%= error %>
+            </div>
+        </div>
+        <% } %>
+
+        <%- body %>
+
+        <footer>
+            <div class="pull-right">
+                Copyright &copy;<%= new Date().getFullYear() %> Thornton Lodge. All rights reserved
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+    </div>
+</div>
+
+<script src="/Adminassets/vendors/jquery/dist/jquery.min.js"></script>
+<script src="/Adminassets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Adminassets/vendors/fastclick/lib/fastclick.js"></script>
+<script src="/Adminassets/vendors/nprogress/nprogress.js"></script>
+<script src="/Adminassets/js/custom.min.js"></script>
+</body>
+</html>

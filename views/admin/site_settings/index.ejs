@@ -1,0 +1,46 @@
+<style>
+.settings-card { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 30px; }
+.upload-area { border: 2px dashed #7BA5C7; border-radius: 8px; padding: 40px; text-align: center; background: #f8f9fa; transition: all 0.3s ease; }
+.upload-area:hover { background: #e8f4f8; border-color: #5A8A9A; }
+.upload-icon { font-size: 48px; color: #7BA5C7; margin-bottom: 15px; }
+.current-file { background: #e8f4f8; padding: 15px; border-radius: 5px; margin-top: 20px; }
+</style>
+
+<div class="right_col" role="main">
+    <div class="">
+        <% if (success) { %><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= success %></div><% } %>
+        <% if (error) { %><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button><%= error %></div><% } %>
+        <div class="page-title"><div class="title_left"><h3>Site Settings <small>Manage website content</small></h3></div></div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="settings-card">
+                    <h2 style="margin-bottom: 20px; color: #2C3E50;"><i class="fa fa-file-pdf-o"></i> Menu of the Year</h2>
+                    <p style="color: #666; margin-bottom: 30px;">Upload the annual menu PDF file that will be displayed on the Cuisine page.</p>
+
+                    <form action="/admin/site-settings/menu-pdf" method="POST" enctype="multipart/form-data">
+                        <div class="upload-area">
+                            <div class="upload-icon"><i class="fa fa-cloud-upload"></i></div>
+                            <h4 style="margin-bottom: 10px; color: #2C3E50;">Choose a PDF file</h4>
+                            <p style="color: #777; margin-bottom: 20px;">Accepted format: PDF only</p>
+                            <input type="file" name="pdfFile" accept="application/pdf" style="margin-bottom: 15px;">
+                        </div>
+
+                        <% if (menu_pdf) { %>
+                        <div class="current-file">
+                            <p style="color: #555; margin: 0;"><i class="fa fa-file-pdf-o" style="color: #7BA5C7;"></i> &nbsp;<strong>Current file:</strong>
+                                <a href="<%= menu_pdf %>" target="_blank" style="color: #7BA5C7;">View Menu PDF</a>
+                            </p>
+                        </div>
+                        <% } %>
+
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button type="submit" class="btn btn-success" style="padding: 12px 30px;"><i class="fa fa-upload"></i> Upload New Menu PDF</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
