@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
@@ -13,10 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride('_method'));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
 app.set('layout', 'layout/app');
 
